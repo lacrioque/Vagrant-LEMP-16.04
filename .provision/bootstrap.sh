@@ -34,6 +34,10 @@ sudo service nginx restart > /dev/null 2>&1
 echo "(Setting Ubuntu (user) password to \"vagrant\"...)"
 echo "ubuntu:vagrant" | chpasswd
 
+echo "(Cleaning up additional setup files and logs...)"
+sudo rm -r /var/www/html
+# sudo rm /var/www/ubuntu-xenial-16.04-cloudimg-console.log
+
 echo "+---------------------------------------------------------+"
 echo "|                      S U C C E S S                      |"
 echo "+---------------------------------------------------------+"

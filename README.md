@@ -51,6 +51,8 @@ I would suggest connecting to the MySQL database using SSH Tunnel.
 
 `Warning: Remote connection disconnect. Retrying...`  - This can be ignored and will not cause a problem.
 
+`Inappropriate ioctl for device` - This can be ignored and will not cause a problem.
+
 
 
 ## Sources
