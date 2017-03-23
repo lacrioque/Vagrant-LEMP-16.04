@@ -1,5 +1,9 @@
 # Vagrant-LEMP-16.04
 
+## PLEASE NOTE
+
+These is a bug in Vagrant 1.9.3 (the newest version at time of writing) which prevents this, and many other Vagrant boxes from working correctly. For now I suggest staying on 1.9.2, which you can download from the official [Vagrant Archive Page](https://releases.hashicorp.com/vagrant/?_ga=1.71162004.563489484.1490234198).
+
 ## Introduction	
 
 I hatched this project from need of an all-in-one Ubuntu 16.04 LEMP Vagrant Box which I could use on my projects.
