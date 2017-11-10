@@ -1,3 +1,10 @@
+system("
+    if [ #{ARGV[0]} = 'up' ]; then
+        echo 'Preparing the host system'
+        ./.prepare/preprepository.sh
+    fi
+")
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -5,6 +12,8 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+
+
 Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -22,17 +31,18 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 80, host: 80
+  config.vm.network "forwarded_port", guest: 80, host: 8000
+  config.vm.network "forwarded_port", guest: 443, host: 4443
   # config.vm.network "forwarded_port", guest: 3306, host: 3306
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "127.0.0.1"
+  # config.vm.network "private_network", ip: "10.0.2.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  # config.vm.network "public_network"
+  config.vm.network "public_network" 
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -40,20 +50,18 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  config.vm.synced_folder "./", "/vagrant", disabled: true
-  config.vm.synced_folder "./", "/var/www", create: true, group: "www-data", owner: "www-data"
+  config.vm.synced_folder "./webroot", "/vagrant", disabled: true
+  config.vm.synced_folder "./webroot", "/var/www", create: true, group: "www-data", owner: "www-data"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
+  config.vm.provider "virtualbox" do |vb|
+    # Customize the amount of memory on the VM:
+    vb.memory = "1024"
+  end
+
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -72,7 +80,10 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+
   config.vm.provision "shell" do |s|
     s.path = ".provision/bootstrap.sh"
   end
+
 end

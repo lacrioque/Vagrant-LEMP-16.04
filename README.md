@@ -1,24 +1,20 @@
 # Vagrant-LEMP-16.04
 
-## PLEASE NOTE
-
-These is a bug in Vagrant 1.9.3 (the newest version at time of writing) which prevents this, and many other Vagrant boxes from working correctly. For now I suggest staying on 1.9.2, which you can download from the official [Vagrant Archive Page](https://releases.hashicorp.com/vagrant/?_ga=1.71162004.563489484.1490234198).
-
 ## Introduction	
 
 I hatched this project from need of an all-in-one Ubuntu 16.04 LEMP Vagrant Box which I could use on my projects.
 
 With this box you will get the full LEMP Stack (Ubuntu 16.04, Nginx, MySQL and PHP), all nicely configured to work properly together.
 
-- Default IP: **127.0.0.1:80**
+- Default IP: **10.10.10.1:8000** and **10.10.10.1:4443**
 - Default SSH Port: **2222**
 - Linux Login: **Ubuntu** / **vagrant**
 - MySQL Login: **root** / **root**
 
-I would suggest connecting to the MySQL database using SSH Tunnel.
+The php-setup is prepared to run LimeSurvey out of the box, so just copy this repository into the LimeSurvey bas and everything should work out of the box.
+Also on upping the container limesurvey gets pulled into the webroot directory. It should be working out of the box
 
 **Warning: Please do not use this for production environments, as it contains insecurities (basic passwords, PHP configs) and is only intended as a development environment.**
-
 
 
 ## Prerequisites
@@ -26,7 +22,6 @@ I would suggest connecting to the MySQL database using SSH Tunnel.
 + [VirtualBox](https://www.virtualbox.org/)
 
 + [Vagrant](https://www.vagrantup.com/)
-
   ​
 
 ## Instructions
