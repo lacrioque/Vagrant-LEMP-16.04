@@ -12,4 +12,4 @@ echo  "(Updating limsurvey ...)"
 
 #copiyng necessary files and folders
 echo  "(Copying files and folders ...)"
- cp $CURRENT_PATH/.provision $CURRENT_PATH/webroot/ -R
+ cp -R $CURRENT_PATH/.provision $CURRENT_PATH/webroot/ 
