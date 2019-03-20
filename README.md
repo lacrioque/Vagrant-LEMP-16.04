@@ -1,18 +1,9 @@
-# Vagrant-LEMP-16.04
+# LimeSurvey Developer Vagrant
 
 ## Introduction	
 
-I hatched this project from need of an all-in-one Ubuntu 16.04 LEMP Vagrant Box which I could use on my projects.
+Pulling current developer version ofg LimeSurvey to run automatic test on it.
 
-With this box you will get the full LEMP Stack (Ubuntu 16.04, Nginx, MySQL and PHP), all nicely configured to work properly together.
-
-- Default IP: **10.10.10.1:8000** and **10.10.10.1:4443**
-- Default SSH Port: **2222**
-- Linux Login: **Ubuntu** / **vagrant**
-- MySQL Login: **root** / **root**
-
-The php-setup is prepared to run LimeSurvey out of the box, so just copy this repository into the LimeSurvey bas and everything should work out of the box.
-Also on upping the container limesurvey gets pulled into the webroot directory. It should be working out of the box
 
 **Warning: Please do not use this for production environments, as it contains insecurities (basic passwords, PHP configs) and is only intended as a development environment.**
 
@@ -26,8 +17,7 @@ Also on upping the container limesurvey gets pulled into the webroot directory. 
 
 ## Instructions
 
-- Edit your `hosts` file to add `127.0.0.1	projectname.vagrant` (optional)
-
+- Edit your `hosts` file to add `127.0.0.1	limesurvey.vagrant` (optional)
 
 - Unzip and place `vagrantfile` and the `.provision` folder into your project root.
 
@@ -60,7 +50,7 @@ Also on upping the container limesurvey gets pulled into the webroot directory. 
 
 http://askubuntu.com/questions/12098/what-does-outputting-to-dev-null-accomplish-in-bash-scripts
 
-
+[Thank you! https://github.com/tabbymarie/Vagrant-LEMP-16.04] (https://github.com/tabbymarie/Vagrant-LEMP-16.04)
 
 ## License
 
