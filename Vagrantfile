@@ -1,10 +1,3 @@
-system("
-    if [ #{ARGV[0]} = 'up' ]; then
-        echo 'Preparing the host system'
-        ./.prepare/preprepository.sh
-    fi
-")
-
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -15,13 +8,20 @@ system("
 
 
 Vagrant.configure("2") do |config|
+
+  # Prepare a local preparation in pulling the local changes
+  config.trigger.before [:up, :provision] do |trigger|
+    trigger.info = "Running prepare script locally..."
+    trigger.run = {path: "./.prepare/preprepository.sh"}
+  end
+
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/bionic64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -33,6 +33,7 @@ Vagrant.configure("2") do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network "forwarded_port", guest: 80, host: 8000
   config.vm.network "forwarded_port", guest: 443, host: 4443
+  config.vm.network "forwarded_port", guest: 9000, host: 9005
   # config.vm.network "forwarded_port", guest: 3306, host: 3306
 
   # Create a private network, which allows host-only access to the machine
@@ -50,7 +51,7 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  config.vm.synced_folder "./webroot", "/vagrant", disabled: true
+  config.vm.synced_folder "./", "/vagrant", disabled: true
   config.vm.synced_folder "./webroot", "/var/www", create: true, group: "www-data", owner: "www-data"
 
   # Provider-specific configuration so you can fine-tune various
