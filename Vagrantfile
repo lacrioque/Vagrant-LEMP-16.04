@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
   # Prepare a local preparation in pulling the local changes
   config.trigger.before [:up, :provision] do |trigger|
     trigger.info = "Running prepare script locally..."
-    trigger.run = {path: "./.prepare/preprepository.sh"}
+    trigger.run = {inline: "node ./.prepare/preprep.js"}
   end
 
   # The most common configuration options are documented and commented below.
@@ -31,19 +31,19 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 80, host: 8000
+  config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 443, host: 4443
-  config.vm.network "forwarded_port", guest: 9000, host: 9005
-  # config.vm.network "forwarded_port", guest: 3306, host: 3306
+  #config.vm.network "forwarded_port", guest: 9005, host: 9005
+  config.vm.network "forwarded_port", guest: 3306, host: 3308
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "10.0.2.10"
+  config.vm.network "private_network", ip: "10.0.2.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  config.vm.network "public_network" 
+  #config.vm.network "public_network" 
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
