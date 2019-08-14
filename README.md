@@ -2,7 +2,7 @@
 
 ## Introduction	
 
-Pulling current developer version ofg LimeSurvey to run automatic test on it.
+Pulling current developer version of LimeSurvey to run automatic test on it.
 
 
 **Warning: Please do not use this for production environments, as it contains insecurities (basic passwords, PHP configs) and is only intended as a development environment.**
@@ -13,13 +13,14 @@ Pulling current developer version ofg LimeSurvey to run automatic test on it.
 + [VirtualBox](https://www.virtualbox.org/)
 
 + [Vagrant](https://www.vagrantup.com/)
-  ​
+
++ [NodeJs](https://nodejs.org/)
 
 ## Instructions
 
 - Edit your `hosts` file to add `127.0.0.1	limesurvey.vagrant` (optional)
 
-- Unzip and place `vagrantfile` and the `.provision` folder into your project root.
+- Unzip and place `vagrantfile`, `.provision` folder and `.prepare` folder into your project root.
 
 
 - Open a terminal window in the project root's location and `vagrant up` 
